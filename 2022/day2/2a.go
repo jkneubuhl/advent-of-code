@@ -7,7 +7,7 @@ import (
     "flag"
 )
 
-var input = flag.String("input", "input", "Input file")
+var input = flag.String("in", "day2/input", "Input file")
 
 type Hand int
 
