@@ -6,12 +6,17 @@ import (
     "bufio"
     "strconv"
     "sort"
+    "flag"
 )
+
+var input = flag.String("input", "input", "Input file")
 
 func main() {
 
+    flag.Parse()
+
     // read input
-    file, err := os.Open("input")
+    file, err := os.Open(*input)
     if err != nil {
         fmt.Errorf("error %v", err)
     }
