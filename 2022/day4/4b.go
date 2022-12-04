@@ -31,15 +31,15 @@ func main() {
 
 	count := 0
 	for _, pair := range pairs {
-        cheeryPrint(pair)
+		cheeryPrint(pair)
 
-        if overlaps(pair.Left, pair.Right) {
+		if overlaps(pair.Left, pair.Right) {
 			fmt.Printf("\t✅\n")
 			count++
 
-        } else {
-    	    fmt.Printf("\t❌\n")
-        }
+		} else {
+			fmt.Printf("\t❌\n")
+		}
 
 		fmt.Println()
 	}
@@ -52,31 +52,31 @@ func main() {
 // Do two ranges overlap?
 func overlaps(a, b Range) bool {
 
-    // [ a ]
-    //       [ b ]
-    if a.Max < b.Min {
-        return false
-    }
+	// [ a ]
+	//       [ b ]
+	if a.Max < b.Min {
+		return false
+	}
 
-    // [ a ]
-    //   [ b ]
+	// [ a ]
+	//   [ b ]
 
-    // [   a   ]
-    //   [ b ]
+	// [   a   ]
+	//   [ b ]
 
-    //   [ a ]
-    // [   b   ]
+	//   [ a ]
+	// [   b   ]
 
-    //    [ a ]
-    // [ b ]
+	//    [ a ]
+	// [ b ]
 
-    //       [ a ]
-    // [ b ]
-    if b.Max < a.Min {
-        return false
-    }
+	//       [ a ]
+	// [ b ]
+	if b.Max < a.Min {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // Does outer fully contain an inner range?
@@ -85,27 +85,27 @@ func contains(outer, inner Range) bool {
 }
 
 func cheeryPrint(pair Pair) {
-    print(pair.Left, "🎅")
-    fmt.Println()
-    print(pair.Right, "🎄")
+	print(pair.Left, "🎅")
+	fmt.Println()
+	print(pair.Right, "🎄")
 }
 
 func print(r Range, icon string) {
-    for i := 1; i <= cheerColumns; i++ {
-        spec := Range{
-            Min: i,
-            Max: i,
-        }
+	for i := 1; i <= cheerColumns; i++ {
+		spec := Range{
+			Min: i,
+			Max: i,
+		}
 
-        if contains(r, spec) {
-            fmt.Printf(icon)
+		if contains(r, spec) {
+			fmt.Printf(icon)
 
-        } else {
-            fmt.Printf("➖")
-        }
-    }
+		} else {
+			fmt.Printf("➖")
+		}
+	}
 
-    fmt.Printf("%v", r)
+	fmt.Printf("%v", r)
 }
 
 func load(file string) ([]Pair, error) {
@@ -127,13 +127,13 @@ func load(file string) ([]Pair, error) {
 			&pair.Left.Min, &pair.Left.Max,
 			&pair.Right.Min, &pair.Right.Max)
 
-        // cheery columns
+		// cheery columns
 		if pair.Left.Max > cheerColumns {
-		    cheerColumns = pair.Left.Max
+			cheerColumns = pair.Left.Max
 		}
 
 		if pair.Right.Max > cheerColumns {
-		    cheerColumns = pair.Right.Max
+			cheerColumns = pair.Right.Max
 		}
 
 		pairs = append(pairs, pair)

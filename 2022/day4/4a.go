@@ -31,15 +31,15 @@ func main() {
 
 	overlaps := 0
 	for _, pair := range pairs {
-	    cheeryPrint(pair)
+		cheeryPrint(pair)
 
 		if contains(pair.Left, pair.Right) || contains(pair.Right, pair.Left) {
 			fmt.Printf("\t✅\n")
 			overlaps++
 
-        } else {
-    	    fmt.Printf("\t❌\n")
-        }
+		} else {
+			fmt.Printf("\t❌\n")
+		}
 
 		fmt.Println()
 	}
@@ -55,27 +55,27 @@ func contains(outer, inner Range) bool {
 }
 
 func cheeryPrint(pair Pair) {
-    print(pair.Left, "⭐")
-    fmt.Println()
-    print(pair.Right, "🎄")
+	print(pair.Left, "⭐")
+	fmt.Println()
+	print(pair.Right, "🎄")
 }
 
 func print(r Range, icon string) {
-    for i := 1; i <= cheerColumns; i++ {
-        spec := Range{
-            Min: i,
-            Max: i,
-        }
+	for i := 1; i <= cheerColumns; i++ {
+		spec := Range{
+			Min: i,
+			Max: i,
+		}
 
-        if contains(r, spec) {
-            fmt.Printf(icon)
+		if contains(r, spec) {
+			fmt.Printf(icon)
 
-        } else {
-            fmt.Printf("➖")
-        }
-    }
+		} else {
+			fmt.Printf("➖")
+		}
+	}
 
-    fmt.Printf("%v", r)
+	fmt.Printf("%v", r)
 }
 
 func load(file string) ([]Pair, error) {
@@ -97,13 +97,13 @@ func load(file string) ([]Pair, error) {
 			&pair.Left.Min, &pair.Left.Max,
 			&pair.Right.Min, &pair.Right.Max)
 
-        // cheery columns
+		// cheery columns
 		if pair.Left.Max > cheerColumns {
-		    cheerColumns = pair.Left.Max
+			cheerColumns = pair.Left.Max
 		}
 
 		if pair.Right.Max > cheerColumns {
-		    cheerColumns = pair.Right.Max
+			cheerColumns = pair.Right.Max
 		}
 
 		pairs = append(pairs, pair)
